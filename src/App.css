@@ -22,6 +22,8 @@
   text-align: center;
 }
 
+::-webkit-input-placeholder { color: lightgray; } 
+
 .icon {
   width: 35px;
 }
