@@ -11,7 +11,8 @@ import CityWeather from './CityWeather';
 
    handleInput = (event) => {
     this.setState({
-      city: event.target.value
+      city: event.target.value,
+      showWeather: false
     })
    }
 
@@ -35,13 +36,15 @@ import CityWeather from './CityWeather';
    }
    renderWeather() {
     const { weather } = this.state;
-    console.log(weather)
     return weather.map((item,index) => {
       return <CityWeather 
-        key={index}
-        city={item.name}
-        weather={item.weather[0].icon}
-        temperature={item.main.temp}
+        key={ index }
+        city={ item.name }
+        weather={ item.weather[0].icon }
+        description={ item.weather[0].description }
+        temperature={ item.main.temp }
+        minTemp={ item.main.temp_min}
+        maxTemp={ item.main.temp_max }
       />
     })
   }
@@ -51,14 +54,14 @@ import CityWeather from './CityWeather';
     const { city, showWeather } = this.state;
 
     return (
-      <div>
-        <div className="search-bar">
-          <form onSubmit={this.searchCity}>
-            <input onChange={this.handleInput} type="text" className="input" name="city" placeholder="Search city" value={city}/>
-            <input type="submit" value="Search"/>
+      <div className="weather-search">
+          <form className="search-form" onSubmit={ this.searchCity }>
+            <input onChange={ this.handleInput } type="text" className="input" name="city" placeholder="Search city" value={ city } required />
+            <input className="icon" type="image" src='https://cdn1.iconfinder.com/data/icons/hawcons/32/698627-icon-111-search-512.png' alt="icon submit"/>
           </form>
-        </div> 
-        { showWeather ? this.renderWeather() : null}       
+        <div className="weather-box">
+         { showWeather ? this.renderWeather() : null }   
+        </div>    
       </div>
     )
   }
