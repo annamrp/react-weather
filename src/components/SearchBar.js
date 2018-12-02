@@ -24,7 +24,8 @@ import CityWeather from './CityWeather';
     .then((result) => {
       this.setState({
         weather: [result],
-        showWeather: true
+        showWeather: true,
+        city: ''
       })
       
     })
@@ -39,7 +40,7 @@ import CityWeather from './CityWeather';
       return <CityWeather 
         key={index}
         city={item.name}
-        weather={item.weather.icon}
+        weather={item.weather[0].icon}
         temperature={item.main.temp}
       />
     })

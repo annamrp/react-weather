@@ -10,7 +10,7 @@ class WeatherServer {
   }
 
   getWeather(city){
-    return axios.get(`http://api.openweathermap.org/data/2.5/weather?q=${city}&APPID=9aff555e67431723d89958d9c9010661`)
+    return axios.get(`http://api.openweathermap.org/data/2.5/weather?q=${city}&APPID=9aff555e67431723d89958d9c9010661&units=metric`)
     .then(({ data }) => data);
   }
 }
