@@ -12,7 +12,8 @@ import CityWeather from './CityWeather';
    handleInput = (event) => {
     this.setState({
       city: event.target.value,
-      showWeather: false
+      showWeather: false,
+      alert: ''
     })
    }
 
@@ -31,9 +32,12 @@ import CityWeather from './CityWeather';
       
     })
     .catch(error => {
-      console.log(error)
+      this.setState({
+        alert: 'Invalid city, try again'
+      })
     })
    }
+
    renderWeather() {
     const { weather } = this.state;
     return weather.map((item,index) => {
@@ -51,17 +55,20 @@ import CityWeather from './CityWeather';
 
   render() {
     
-    const { city, showWeather } = this.state;
+    const { city, showWeather, alert } = this.state;
 
     return (
-      <div className="weather-search">
+      <div>
+        { alert ? <p className="warning">{alert}</p> :  null}
+        <div className="weather-search">
           <form className="search-form" onSubmit={ this.searchCity }>
             <input onChange={ this.handleInput } type="text" className="input" name="city" placeholder="Search city" value={ city } required />
             <input className="icon" type="image" src='https://cdn1.iconfinder.com/data/icons/hawcons/32/698627-icon-111-search-512.png' alt="icon submit"/>
           </form>
-        <div className="weather-box">
-         { showWeather ? this.renderWeather() : null }   
-        </div>    
+          <div className="weather-box">
+          { showWeather ? this.renderWeather() : null }   
+          </div>    
+        </div>
       </div>
     )
   }
