@@ -12,8 +12,10 @@
 
 .input {
   width: 75%;
+  min-width: 250px;
   height: 35px;
   border-radius: 25px;
+  border: .5px solid lightgray
 }
 
 .input[placeholder] {
@@ -23,6 +25,11 @@
 }
 
 ::-webkit-input-placeholder { color: lightgray; } 
+ 
+ .input:focus {
+  outline: none;
+  border: 3px solid #5cafee;
+} 
 
 .icon {
   width: 35px;
@@ -89,10 +96,10 @@
 }
 
 .warning {
-  color: red;
   text-align: center;
   font-size: 1.5em;
-  width: 30%;
+  width: 25%;
+  min-width: 250px;
   margin: 15px auto;
   padding: 10px 0;
   border-radius: 15px;
